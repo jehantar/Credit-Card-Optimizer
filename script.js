@@ -35,10 +35,16 @@ function updateCardList() {
             cardListHTML += `
                 <div class="card-item">
                     <h3>${card.name}</h3>
-                    <p><strong>Grocery Points:</strong> ${card.groceryPoints}x</p>
-                    <p><strong>Dining Points:</strong> ${card.diningPoints}x</p>
-                    <p><strong>Travel Points:</strong> ${card.travelPoints}x</p>
-                    <p><strong>Other Points:</strong> ${card.otherPoints}x</p>
+                    <div class="card-content">
+                        <div class="card-column">
+                            <p><strong>Grocery Points:</strong> ${card.groceryPoints}x</p>
+                            <p><strong>Dining Points:</strong> ${card.diningPoints}x</p>
+                        </div>
+                        <div class="card-column">
+                            <p><strong>Travel Points:</strong> ${card.travelPoints}x</p>
+                            <p><strong>Other Points:</strong> ${card.otherPoints}x</p>
+                        </div>
+                    </div>
                     <p><strong>Point Value:</strong> ${card.pointValue} cents</p>
                     <button onclick="removeCard(${index})">Remove</button>
                 </div>
