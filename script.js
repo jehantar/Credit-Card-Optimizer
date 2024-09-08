@@ -32,9 +32,11 @@ function updateCardList() {
             cardListHTML += `
                 <div class="card-item">
                     <h3>${card.name}</h3>
-                    <p>Grocery: ${card.groceryPoints}x | Dining: ${card.diningPoints}x</p>
-                    <p>Travel: ${card.travelPoints}x | Other: ${card.otherPoints}x</p>
-                    <p>Point Value: ${card.pointValue} cents</p>
+                    <p><strong>Grocery Points:</strong> ${card.groceryPoints}x</p>
+                    <p><strong>Dining Points:</strong> ${card.diningPoints}x</p>
+                    <p><strong>Travel Points:</strong> ${card.travelPoints}x</p>
+                    <p><strong>Other Points:</strong> ${card.otherPoints}x</p>
+                    <p><strong>Point Value:</strong> ${card.pointValue} cents</p>
                     <button onclick="removeCard(${index})">Remove</button>
                 </div>
             `;
@@ -53,7 +55,6 @@ function removeCard(index) {
 
 // Function to calculate the best card
 function calculateBestCard() {
-    const store = document.getElementById('store').value;
     const category = document.getElementById('category').value;
     
     let bestCard = null;
@@ -86,7 +87,7 @@ function calculateBestCard() {
     const resultDiv = document.getElementById('result');
     if (bestCard) {
         resultDiv.innerHTML = `
-            <h3>Best Card for ${store} (${category}):</h3>
+            <h3>Best Card for ${category}:</h3>
             <p><strong>${bestCard.name}</strong></p>
             <p>Value: ${bestValue.toFixed(2)} cents per dollar spent</p>
         `;
@@ -109,38 +110,6 @@ function loadCards() {
     }
 }
 
-// Event listener for form submission
-document.getElementById('cardForm').addEventListener('submit', addCard);
-
-// Load cards from local storage on page load
-window.onload = loadCards;
-
-// Function to update the card list display
-function updateCardList() {
-    const cardList = document.getElementById('cardList');
-    let cardListHTML = '<h2>Your Cards</h2>';
-    
-    if (creditCards.length === 0) {
-        cardListHTML += '<p>No cards added yet. Use the form to add a card.</p>';
-    } else {
-        creditCards.forEach((card, index) => {
-            cardListHTML += `
-                <div class="card-item">
-                    <h3>${card.name}</h3>
-                    <p><strong>Grocery Points:</strong> ${card.groceryPoints}x</p>
-                    <p><strong>Dining Points:</strong> ${card.diningPoints}x</p>
-                    <p><strong>Travel Points:</strong> ${card.travelPoints}x</p>
-                    <p><strong>Other Points:</strong> ${card.otherPoints}x</p>
-                    <p><strong>Point Value:</strong> ${card.pointValue} cents</p>
-                    <button onclick="removeCard(${index})">Remove</button>
-                </div>
-            `;
-        });
-    }
-    
-    cardList.innerHTML = cardListHTML;
-}
-
 // Function to toggle dark mode
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
@@ -155,8 +124,15 @@ function loadDarkModePreference() {
     }
 }
 
-// Event listener for dark mode toggle
-document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
-
-// Load dark mode preference on page load
-window.addEventListener('load', loadDarkModePreference);
+// Event listeners and initialization
+document.addEventListener('DOMContentLoaded', (event) => {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    }
+    loadDarkModePreference();
+    loadCards();
+    
+    document.getElementById('cardForm').addEventListener('submit', addCard);
+    document.getElementById('calculateButton').addEventListener('click', calculateBestCard);
+});
