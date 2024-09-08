@@ -1,6 +1,14 @@
 :root {
     --primary-color: #4CAF50;
     --secondary-color: #45a049;
+    --background-color: #f4f4f4;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --border-color: #dddddd;
+    --shadow-color: rgba(0,0,0,0.1);
+}
+
+.dark-mode {
     --background-color: #121212;
     --card-background: #1e1e1e;
     --text-color: #e0e0e0;
@@ -97,7 +105,7 @@ button:hover {
 }
 
 .card-item h3 {
-    color: #ffff00;
+    color: teal;
     font-size: 24px;
     margin-bottom: 15px;
 }
