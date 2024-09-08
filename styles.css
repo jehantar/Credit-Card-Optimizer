@@ -1,17 +1,6 @@
 :root {
     --primary-color: #4CAF50;
     --secondary-color: #45a049;
-    --background-color: #f4f4f4;
-    --card-background: #ffffff;
-    --text-color: #333333;
-    --border-color: #dddddd;
-    --shadow-color: rgba(0,0,0,0.1);
-}
-
-/* Dark mode colors */
-.dark-mode {
-    --primary-color: #66bb6a;
-    --secondary-color: #81c784;
     --background-color: #121212;
     --card-background: #1e1e1e;
     --text-color: #e0e0e0;
@@ -30,9 +19,10 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin: auto;
-    background: var(--card-background);
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--background-color);
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 20px var(--shadow-color);
@@ -47,18 +37,21 @@ h1, h2 {
 .app-sections {
     display: flex;
     gap: 30px;
+    width: 97%;
 }
 
 .left-section, .right-section {
     flex: 1;
+    min-width: 0;
 }
 
-form {
-    background-color: var(--background-color);
+form, #cardList, #calculator {
+    background-color: var(--card-background);
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
     transition: background-color 0.3s ease;
+    width: 90%;
 }
 
 label {
@@ -68,20 +61,21 @@ label {
 }
 
 input[type="text"], input[type="number"], select {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 16px;
-    background-color: var(--card-background);
+    background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 button {
     background-color: var(--primary-color);
-    color: var(--card-background);
+    color: var(--text-color);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -95,15 +89,15 @@ button:hover {
 }
 
 .card-item {
-    background-color: #f0f0f0;
-    border: 3px solid #ff0000;
+    background-color: var(--background-color);
+    border: 2px solid var(--primary-color);
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 15px;
+    border-radius: 8px;
 }
 
 .card-item h3 {
-    color: #0000ff;
+    color: #ffff00;
     font-size: 24px;
     margin-bottom: 15px;
 }
@@ -124,7 +118,7 @@ button:hover {
 }
 
 .card-item strong {
-    color: #008000;
+    color: var(--primary-color);
 }
 
 .card-item button {
@@ -138,30 +132,34 @@ button:hover {
     font-size: 18px;
 }
 
-/* Dark mode adjustments */
-.dark-mode .card-item {
-    background-color: #333333;
-    border-color: #00ff00;
+.card-item button:hover {
+    background-color: #cc0000;
 }
 
-.dark-mode .card-item h3 {
-    color: #ffff00;
+.card-item p i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .app-sections {
         flex-direction: column;
     }
+
+    .left-section, .right-section {
+        width: 100%;
+    }
 }
 
-/* Dark mode toggle button */
 #dark-mode-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
     padding: 10px;
     background-color: var(--primary-color);
-    color: var(--card-background);
+    color: var(--text-color);
     border: none;
     border-radius: 50%;
     cursor: pointer;
