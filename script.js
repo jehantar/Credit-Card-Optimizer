@@ -37,15 +37,15 @@ function updateCardList() {
                     <h3>${card.name}</h3>
                     <div class="card-content">
                         <div class="card-column">
-                            <p><strong>Grocery Points:</strong> ${card.groceryPoints}x</p>
-                            <p><strong>Dining Points:</strong> ${card.diningPoints}x</p>
+                            <p><i class="fas fa-shopping-cart"></i> <strong>Grocery Points:</strong> ${card.groceryPoints}x</p>
+                            <p><i class="fas fa-utensils"></i> <strong>Dining Points:</strong> ${card.diningPoints}x</p>
                         </div>
                         <div class="card-column">
-                            <p><strong>Travel Points:</strong> ${card.travelPoints}x</p>
-                            <p><strong>Other Points:</strong> ${card.otherPoints}x</p>
+                            <p><i class="fas fa-plane"></i> <strong>Travel Points:</strong> ${card.travelPoints}x</p>
+                            <p><i class="fas fa-star"></i> <strong>Other Points:</strong> ${card.otherPoints}x</p>
                         </div>
                     </div>
-                    <p><strong>Point Value:</strong> ${card.pointValue} cents</p>
+                    <p><i class="fas fa-coins"></i> <strong>Point Value:</strong> ${card.pointValue} cents</p>
                     <button onclick="removeCard(${index})">Remove</button>
                 </div>
             `;
@@ -54,6 +54,7 @@ function updateCardList() {
     
     cardList.innerHTML = cardListHTML;
 }
+ 
 
 // Function to remove a card
 function removeCard(index) {
