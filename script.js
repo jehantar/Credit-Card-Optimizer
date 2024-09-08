@@ -4,6 +4,7 @@ let creditCards = [];
 // Function to add a new card
 function addCard(event) {
     event.preventDefault();
+    console.log("Add Card function called");
     
     const card = {
         name: document.getElementById('cardName').value,
@@ -13,6 +14,8 @@ function addCard(event) {
         otherPoints: parseFloat(document.getElementById('otherPoints').value),
         pointValue: parseFloat(document.getElementById('pointValue').value)
     };
+
+    console.log("New card object:", card);
     
     creditCards.push(card);
     updateCardList();
@@ -126,6 +129,8 @@ function loadDarkModePreference() {
 
 // Event listeners and initialization
 document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("DOM fully loaded");
+
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', toggleDarkMode);
@@ -133,6 +138,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     loadDarkModePreference();
     loadCards();
     
-    document.getElementById('cardForm').addEventListener('submit', addCard);
-    document.getElementById('calculateButton').addEventListener('click', calculateBestCard);
+     const cardForm = document.getElementById('cardForm');
+    if (cardForm) {
+        cardForm.addEventListener('submit', addCard);
+        console.log("Form submit event listener added");
+    } else {
+        console.error("Card form not found");
+    }
 });
