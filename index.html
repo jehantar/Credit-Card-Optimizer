@@ -4,65 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credit Card Rewards Calculator</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <button id="dark-mode-toggle">🌓</button>
     <div class="container">
         <h1>Credit Card Rewards Calculator</h1>
         
-        <div class="app-sections">
-            <div class="left-section">
-                <form id="cardForm">
-                    <h2>Add a New Card</h2>
-                    <label for="cardName">Card Name:</label>
-                    <input type="text" id="cardName" required>
-                    
-                    <label for="groceryPoints">Grocery Points (per $):</label>
-                    <input type="number" id="groceryPoints" step="0.01" required>
-                    
-                    <label for="diningPoints">Dining Points (per $):</label>
-                    <input type="number" id="diningPoints" step="0.01" required>
-                    
-                    <label for="travelPoints">Travel Points (per $):</label>
-                    <input type="number" id="travelPoints" step="0.01" required>
-                    
-                    <label for="otherPoints">Other Points (per $):</label>
-                    <input type="number" id="otherPoints" step="0.01" required>
-                    
-                    <label for="pointValue">Point Value (in cents):</label>
-                    <input type="number" id="pointValue" step="0.01" required>
-                    
-                    <button type="submit">Add Card</button>
-                </form>
+        <div class="card-form">
+            <h2>Add a New Card</h2>
+            <form id="cardForm">
+                <input type="text" id="cardName" placeholder="Card Name" required>
+                <input type="number" id="groceryPoints" placeholder="Grocery Points (per $)" step="0.01" required>
+                <input type="number" id="diningPoints" placeholder="Dining Points (per $)" step="0.01" required>
+                <input type="number" id="travelPoints" placeholder="Travel Points (per $)" step="0.01" required>
+                <input type="number" id="otherPoints" placeholder="Other Points (per $)" step="0.01" required>
+                <input type="number" id="pointValue" placeholder="Point Value (in cents)" step="0.01" required>
+                <button type="submit">Add Card</button>
+            </form>
+        </div>
 
-                <div id="calculator">
-                    <h2>Calculate Best Card</h2>
-                    <label for="category">Category:</label>
-                    <select id="category">
-                        <option value="grocery">Grocery</option>
-                        <option value="dining">Dining</option>
-                        <option value="travel">Travel</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <button id="calculateButton" onclick="calculateBestCard()">Calculate</button>
-                </div>
-
-                <div id="result">
-                    <!-- Result will be displayed here -->
-                </div>
+        <div class="calculator">
+            <h2>Calculate Best Card</h2>
+            <div id="map"></div>
+            <div class="radio-group">
+                <input type="radio" id="useCurrentLocation" name="locationType" value="current" checked>
+                <label for="useCurrentLocation">Use my current location</label>
+                <input type="radio" id="useEnteredAddress" name="locationType" value="entered">
+                <label for="useEnteredAddress">Enter an address</label>
             </div>
-
-            <div class="right-section">
-                <div id="cardList">
-                    <h2>Your Cards</h2>
-                    <!-- Card list will be populated here -->
-                </div>
+            <div id="addressInputContainer" style="display: none;">
+                <input type="text" id="addressInput" placeholder="Enter an address">
             </div>
+            <select id="category">
+                <option value="grocery">Grocery</option>
+                <option value="dining">Dining</option>
+                <option value="travel">Travel</option>
+                <option value="other">Other</option>
+            </select>
+            <button id="calculateButton">Calculate Best Card</button>
+            <div id="result"></div>
+        </div>
+
+        <div class="card-list" id="cardList">
+            <!-- Card list will be populated here -->
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
